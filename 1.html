@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+
+<body>
+    <h1>Http và những điều cần biết để học Spring Boot</h1>
+        <p>09 tháng 01, 2022 - 73 lượt xem</p>
+        <hr />
+        <p>Chào các bạn, tạm dừng những bài viết về kỹ năng code Spring Boot, hôm nay chúng ta sẽ tìm hiểu về chủ đề bên lề
+            nhưng rất quan trọng không chỉ với Spring Boot mà còn với lập trình web nói chung, đó là Http.</p>
+
+    <h2>Sơ lược về Http</h2>
+        <p><b>Http ( HyperText Transfer Protocol </b> hay <b>Giao thức truyền dẫn siêu văn bản)</b>là một giao thức mạng
+            được thiết kế theo mô hình client – server giúp thực hiện giao tiếp giữa client và server theo các cặp request –
+            response, client sẽ gửi request lên server để xử lý và nhận kết quả trả về bằng response.</p>
+
+    <h2>Http request</h2>
+
+    <h3>Có những gì trong một request?</h3>
+
+        <p>Để thực hiện giao tiếp với server, client sẽ khởi tạo và gửi đi những Http request, thường bằng cách nhấn vào
+            những đường link hoặc button trong trình duyệt của mình.</p>
+        <img src="https://techmaster.vn/media/static/ApNdETCq/c7di2rs51co14cjunvcg" alt="">
+        <p>Một Http request</p>
+        <p>Bắt đầu của Http request là <b>Request Line</b> bao gồm 3 thông tin:</p>
+        <ul>
+            <li>Method: là phương thức mà request này sử dụng (thường là GET, POST, PUT và DELETE), trong ví dụ là GET.</li>
+            <li>URI (Uniform Resource Identifier): là địa chỉ định danh của tài nguyên được yêu cầu, trong ví dụ là
+                /doc/test.html.</li>
+            <li>HTTP Version: là phiên bản Http đang được sử dụng, trong ví dụ là HTTP/1.1.</li>
+        </ul>
+        <p>Sau đó là các trường Request Headers, giúp gửi thêm các thông tin bổ sung cho request và về client:</p>
+        <ul>
+            <li>Accept: loại nội dung được chấp nhận cho response trả về từ server, trong ví dụ là image/gif, image/jpeg.
+            </li>
+            <li>Accept-Language: ngôn ngữ mặc định của phía client, trong ví dụ là en-us (tiếng Anh Mỹ)</li>
+            <li>Accept-Encoding: các kiểu mã hóa được chấp nhận, trong ví dụ là gzip, deflate</li>
+            <li>User-Agent: thông tin về user-agent của người dùng, trong ví dụ là Mozilla/4.0</li>
+            <li>Content-Length: kích cỡ phần thân của request, trong ví dụ là 35</li>
+        </ul>
+
+    <h2>Về GET và POST</h2>
+        <p>Đây là 2 phương thức được sử dụng phổ biến nhất đối với Http request, bảng dưới đây sẽ trình bày và so sánh một
+            vài đặc điểm chính của 2 phương thức này</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Get</th>
+                    <th>Post</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Câu truy vấn được đưa vào đường dẫn của request</td>
+                    <td>Câu truy vấn được lưu trong body của request</td>
+                </tr>
+                <tr>
+                    <td>Bị giới hạn về độ dài</td>
+                    <td>Không bị giới hạn về độ dài</td>
+                </tr>
+                <tr>
+                    <td>Có thể được cached, bookmarked và lưu lại trong lịch sử</td>
+                    <td>Không bị cached, bookmarked hay lưu lại trong lịch sử duyệt web</td>
+                </tr>
+                <tr>
+                    <td>Không nên dùng cho dữ liệu quan trọng, chỉ nên dùng để nhận dữ liệu</td>
+                    <td>Phù hợp để dùng cho dữ liệu hoặc tác vụ quan trọng, bảo mật vì che giấu thông tin tốt hơn</td>
+                </tr>
+            </tbody>
+        </table>
+
+    <h2>Http response</h2>
+    <h3>Có những gì trong một response?</h3>
+        <img src="https://techmaster.vn/media/static/ApNdETCq/c7di4fc51co14cjunvd0" alt="">
+        <p>Một Http response</p>
+        <p>Qua ví dụ trên có thể thấy cấu trúc của Http response cũng khá tương tự với Http request,
+            chỉ khác nhau ở chỗ request có <b>Request Line</b> còn đối với Http response là <b>Status Line</b>, và Status
+            Line của response thì cũng bao gồm 3 phần:</p>
+        <ul>
+            <li>Http-Version: phiên bản Http cao nhất hỗ trợ, trong ví dụ là HTTP/1.1</li>
+            <li>Status Code: mã kết quả trả về, trong ví dụ là 200</li>
+            <li>Reason-Phrase: mô tả về Status Code, trong ví dụ là OK</li>
+        </ul>
+
+    <h2>Http Status Code</h2>
+        <p>Một điều cần chú ý khi code các API bằng Spring Boot là chúng ta cần tạo những response rõ ràng về ý nghĩa nhất
+            để client có thể dễ hiểu và xử lý, và Status code của response là một yếu tố quan trọng tạo nên điều này. Hãy
+            cùng tìm hiểu một vài Status Code thông dụng nhé</p>
+        <img src="https://techmaster.vn/media/static/ApNdETCq/c7di4nc51co14cjunvdg" alt="Picture 1" width="600">
+        <p>Các Http Status Code thông dụng</p>
+
+    <h2>Lời kết</h2>
+        <p>Trên đây là một vài kiến thức cơ bản về Http cũng như Http request và response, hy vọng đã giúp các bạn có được
+            cái nhìn tổng quan về nó và ứng dụng vào quá trình học Spring Boot sau này. Trong những bài viết tới mình sẽ
+            cung cấp cho các bạn thêm về REST cũng như cách sử dụng Postman để giúp việc học Spring Boot thuận tiện hơn nhé.
+            Cảm ơn các bạn đã đọc bài và hẹn gặp lại.</p>
+        <p>Lê Sơn,</p>
+        <br>
+ 
+    <h2>Bình luận</h2>
+
+    <a href="2.html">to page 2</a>
+</body>
+
+</html>
